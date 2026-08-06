@@ -101,6 +101,22 @@ public class MainActivity extends Activity {
         "document.addEventListener('pointerdown',function(){const c=window.getAudioContext();if(c&&c.state==='suspended')c.resume().catch(function(){});},{passive:true});" +
         "})();";
 
+    private static final String VISUAL_PATCH =
+        "(function(){" +
+        "if(document.getElementById('cpa-visual-patch'))return;" +
+        "const style=document.createElement('style');" +
+        "style.id='cpa-visual-patch';" +
+        "style.textContent=`" +
+        "#board{isolation:isolate;background:linear-gradient(180deg,rgba(12,5,58,.68),rgba(7,3,37,.78))!important;border:3px solid rgba(213,111,255,.9)!important;box-shadow:0 18px 48px rgba(0,0,0,.45),0 0 28px rgba(190,63,255,.34),inset 0 0 0 2px rgba(87,163,255,.16),inset 0 0 36px rgba(90,51,190,.3)!important;}" +
+        "#board::before{content:'';position:absolute;inset:8px;z-index:1;border-radius:17px;pointer-events:none;background-image:linear-gradient(rgba(130,88,224,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(130,88,224,.13) 1px,transparent 1px);background-size:calc(100% / 7) calc(100% / 8);opacity:.5;}" +
+        "#board::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.72;background-image:url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 820'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23120a50'/><stop offset='.56' stop-color='%23321a88'/><stop offset='1' stop-color='%23ff9b78'/></linearGradient><linearGradient id='m' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23ff8cf5' stop-opacity='.6'/><stop offset='1' stop-color='%23ffbc70' stop-opacity='0'/></linearGradient></defs><rect width='700' height='820' fill='url(%23g)'/><g fill='%23fff'><circle cx='80' cy='75' r='2'/><circle cx='140' cy='120' r='1.8'/><circle cx='220' cy='55' r='1.7'/><circle cx='310' cy='98' r='2'/><circle cx='410' cy='62' r='1.5'/><circle cx='490' cy='110' r='1.8'/><circle cx='585' cy='74' r='2'/><circle cx='650' cy='130' r='1.7'/><circle cx='530' cy='42' r='2.6'/><circle cx='115' cy='36' r='2.6'/><circle cx='350' cy='155' r='1.8'/><circle cx='450' cy='170' r='1.4'/></g><path d='M90 290C250 210 430 210 610 275' fill='none' stroke='url(%23m)' stroke-width='46' stroke-linecap='round'/><path d='M0 650C70 620 130 570 180 520c35 58 84 78 150 92c64-105 132-138 220-154c31 55 82 112 132 150c38-37 75-61 120-85V820H0Z' fill='%23120b46'/><path d='M0 690c70-48 125-69 198-81c31 33 67 59 128 73c45-60 85-94 145-124c66 31 131 78 229 132V820H0Z' fill='%231d0f63'/><path d='M55 510h12v80h-12zM44 590h34v8H44zM84 545h10v45H84zM79 590h24v8H79zM612 505h12v85h-12zM600 590h36v8H600zM640 545h10v45h-10zM634 590h24v8h-24z' fill='%2323126a'/><path d='M61 494l19 16H42zM618 489l20 18h-40zM89 533l14 13H75zM645 533l12 12h-24z' fill='%23ffb85f'/><circle cx='350' cy='690' r='78' fill='%23ffdf95' fill-opacity='.13'/></svg>\");background-size:cover;background-position:center;filter:saturate(1.08) brightness(1.06);}" +
+        ".ball{z-index:2!important;border:1px solid rgba(255,255,255,.38)!important;box-shadow:inset 0 10px 13px rgba(255,255,255,.52),inset 0 -12px 16px rgba(0,0,0,.28),0 6px 10px rgba(0,0,0,.32),0 0 12px rgba(255,255,255,.14)!important;}" +
+        ".ice{z-index:3!important;}" +
+        ".ball.selected{z-index:8!important;filter:brightness(1.22) saturate(1.12)!important;box-shadow:inset 0 10px 13px rgba(255,255,255,.62),inset 0 -12px 16px rgba(0,0,0,.2),0 0 0 5px rgba(255,233,94,.28),0 0 24px #fff,0 0 42px rgba(86,201,255,.86)!important;}" +
+        "`;" +
+        "document.head.appendChild(style);" +
+        "})();";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,6 +136,7 @@ public class MainActivity extends Activity {
                 super.onPageFinished(view, url);
                 if (url != null && url.endsWith("index.html")) {
                     view.evaluateJavascript(GAME_PATCH, null);
+                    view.evaluateJavascript(VISUAL_PATCH, null);
                 }
             }
         });
