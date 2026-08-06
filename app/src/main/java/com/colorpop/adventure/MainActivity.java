@@ -118,7 +118,9 @@ public class MainActivity extends Activity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                view.evaluateJavascript(GAME_PATCH, null);
+                if (url != null && url.endsWith("index.html")) {
+                    view.evaluateJavascript(GAME_PATCH, null);
+                }
             }
         });
 
@@ -136,7 +138,7 @@ public class MainActivity extends Activity {
         hideSystemBars();
 
         if (savedInstanceState == null) {
-            webView.loadUrl("file:///android_asset/index.html");
+            webView.loadUrl("file:///android_asset/home.html");
         } else {
             webView.restoreState(savedInstanceState);
         }
@@ -158,6 +160,15 @@ public class MainActivity extends Activity {
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             );
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView != null && webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
         }
     }
 
