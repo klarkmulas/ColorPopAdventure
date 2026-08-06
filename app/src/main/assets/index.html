@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Color Pop Adventure 0.60</title>
+<title>Color Pop Adventure 0.61</title>
 <style>
 :root{
   --bg1:#171831;--bg2:#343b7c;--panel:rgba(255,255,255,.11);--text:#fff;
@@ -200,203 +200,87 @@ footer{text-align:center;font-size:11px;opacity:.65;padding:2px 0 0;flex-shrink:
 }
 
 
-/* ===== Color Pop Adventure 0.60 — premium visual layer ===== */
-:root{
-  --neon-pink:#ff4de8;
-  --neon-purple:#8d38ff;
-  --neon-blue:#28b8ff;
-  --neon-green:#7ee52a;
-  --gold:#ffd84c;
-  --deep:#090523;
-  --panel:linear-gradient(180deg,rgba(60,22,132,.94),rgba(23,8,73,.94));
+/* Tutorial illustrato 0.61 */
+.help-btn{
+  margin-top:12px;border:2px solid rgba(255,255,255,.65);border-radius:18px;
+  padding:11px 16px;background:linear-gradient(180deg,#ff62dd,#8f28c9);color:#fff;
+  font-weight:1000;cursor:pointer;box-shadow:0 6px 0 #4f126f,0 0 18px rgba(255,82,224,.35);
 }
-body{
-  font-family:"Trebuchet MS",Inter,Arial,sans-serif;
+.help-btn:active{transform:translateY(3px);box-shadow:0 3px 0 #4f126f}
+.tutorial-overlay{
+  position:fixed;inset:0;z-index:140;display:none;place-items:center;padding:18px;
+  background:rgba(6,3,28,.9);backdrop-filter:blur(10px)
+}
+.tutorial-overlay.show{display:grid}
+.tutorial-card{
+  width:min(94vw,420px);overflow:hidden;border-radius:28px;padding:18px;
+  background:linear-gradient(180deg,#3c1684,#18064d);color:#fff;
+  border:2px solid rgba(220,128,255,.7);
+  box-shadow:0 28px 80px rgba(0,0,0,.55),0 0 30px rgba(190,60,255,.32)
+}
+.tutorial-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tutorial-top h2{margin:0;font-size:25px}
+.tutorial-close{
+  width:40px;height:40px;border:0;border-radius:50%;background:#fff;color:#54206e;
+  font-weight:1000;font-size:20px;cursor:pointer
+}
+.tutorial-visual{
+  min-height:230px;margin:15px 0 12px;border-radius:22px;padding:16px;
+  display:grid;place-items:center;text-align:center;
   background:
-    radial-gradient(circle at 50% -10%,rgba(255,61,234,.48),transparent 31%),
-    radial-gradient(circle at 10% 66%,rgba(38,179,255,.22),transparent 27%),
-    radial-gradient(circle at 91% 74%,rgba(126,229,42,.16),transparent 24%),
-    linear-gradient(180deg,#15034c 0%,#26096d 46%,#090522 100%);
-  background-size:100% 100%;
-  animation:none;
+    radial-gradient(circle at 50% 20%,rgba(255,96,230,.28),transparent 42%),
+    linear-gradient(180deg,rgba(14,5,58,.72),rgba(7,3,35,.9));
+  border:1px solid rgba(255,255,255,.14);overflow:hidden
 }
-body::before,body::after{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+.tutorial-title{margin:0 0 7px;color:#ffe66d;font-size:23px}
+.tutorial-text{margin:0;line-height:1.45;color:#ece7ff}
+.tutorial-dots{display:flex;justify-content:center;gap:7px;margin:10px 0}
+.tutorial-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25)}
+.tutorial-dot.active{background:#ffe66d;box-shadow:0 0 10px #ffe66d}
+.tutorial-actions{display:grid;grid-template-columns:1fr 1.3fr;gap:9px}
+.tutorial-actions button{
+  border:0;border-radius:16px;padding:12px 10px;color:#fff;font-weight:1000;cursor:pointer
 }
-body::before{
-  background-image:
-    radial-gradient(circle,rgba(255,255,255,.92) 0 1px,transparent 1.8px),
-    radial-gradient(circle,rgba(255,209,73,.72) 0 1.2px,transparent 2px),
-    radial-gradient(circle,rgba(91,199,255,.72) 0 1px,transparent 2px);
-  background-size:49px 49px,83px 83px,119px 119px;
-  background-position:7px 13px,33px 19px,21px 67px;
-  opacity:.42;animation:starDrift 22s linear infinite;
+#tutorialPrev{background:linear-gradient(#52caff,#0877df)}
+#tutorialNext{background:linear-gradient(#9af23b,#38b700)}
+.tutorial-mini-board{display:grid;grid-template-columns:repeat(4,44px);gap:7px}
+.tutorial-ball{
+  width:44px;height:44px;border-radius:50%;
+  box-shadow:inset 0 6px 8px rgba(255,255,255,.5),inset 0 -7px 10px rgba(0,0,0,.22),0 4px 8px rgba(0,0,0,.28)
 }
-body::after{
-  background:linear-gradient(115deg,transparent 36%,rgba(255,255,255,.07) 49%,transparent 62%);
-  transform:translateX(-70%);animation:skySweep 9s ease-in-out infinite;
-}
-.screen{scrollbar-width:none}.screen::-webkit-scrollbar{display:none}
-.screen.active{animation:screenIn .42s cubic-bezier(.2,.8,.2,1)}
-.app{padding:9px 12px 16px}
-.premium-topbar{
-  position:sticky;top:0;z-index:40;padding:7px 8px;margin:0 -2px 10px;
-  border:1px solid rgba(255,255,255,.18);border-radius:20px;
-  background:linear-gradient(180deg,rgba(45,15,109,.88),rgba(20,7,64,.9));
-  box-shadow:0 8px 24px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.2);
-  backdrop-filter:blur(12px);
-}
-.mini-status{display:flex;align-items:center;gap:5px;min-width:62px;padding:7px 10px;border-radius:999px;background:rgba(10,4,43,.58);font-size:15px;border:1px solid rgba(255,255,255,.13)}
-.status-star{filter:drop-shadow(0 0 5px #ffd746)}
-.logo-mini{display:flex;align-items:center;justify-content:center;gap:0;font-size:19px;letter-spacing:-2px;white-space:nowrap}
-.logo-mini span{font-weight:1000;text-shadow:0 2px 0 rgba(0,0,0,.28)}
-.logo-mini span:nth-child(1){color:#ff526f}.logo-mini span:nth-child(2){color:#ffbd3f}.logo-mini span:nth-child(3){color:#34caff}.logo-mini span:nth-child(4){color:#74df31}.logo-mini span:nth-child(5){color:#ff63d7}
-.logo-mini b{margin-left:5px;color:#fff8e9;letter-spacing:-1px;text-shadow:0 2px 0 #733086}
-.sound-orb,.icon-btn{
-  border:2px solid rgba(255,255,255,.65);background:linear-gradient(180deg,#7738db,#2c0c81);color:#fff;
-  box-shadow:0 6px 0 #17054e,0 0 16px rgba(216,71,255,.45),inset 0 2px 0 rgba(255,255,255,.42);
-  transition:transform .14s ease,filter .14s ease;
-}
-.icon-btn:active{transform:translateY(3px) scale(.95);box-shadow:0 3px 0 #17054e}
-.panel{
-  background:var(--panel);border:2px solid rgba(202,104,255,.62);
-  box-shadow:0 18px 42px rgba(0,0,0,.3),0 0 22px rgba(181,55,255,.2),inset 0 1px 0 rgba(255,255,255,.22);
-}
-.premium-hero{position:relative;overflow:hidden;padding:16px 14px 15px;margin-bottom:12px}
-.premium-hero::before{content:"";position:absolute;inset:-35%;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,.08),transparent 18%);animation:heroSpin 14s linear infinite;pointer-events:none}
-.logo-lockup{position:relative;z-index:2;margin:0 auto 7px;filter:drop-shadow(0 9px 13px rgba(0,0,0,.35))}
-.logo-color{display:flex;justify-content:center;gap:1px}
-.logo-color span{
-  display:grid;place-items:center;width:43px;height:48px;border-radius:15px;font-size:29px;font-weight:1000;
-  border:2px solid rgba(255,255,255,.55);box-shadow:0 6px 0 rgba(43,6,68,.52),inset 0 4px 0 rgba(255,255,255,.4);
-  text-shadow:0 3px 0 rgba(0,0,0,.2);animation:letterBounce 3s ease-in-out infinite;
-}
-.logo-color span:nth-child(1){background:linear-gradient(#ff7587,#ec1f43)}
-.logo-color span:nth-child(2){background:linear-gradient(#ffe76b,#ff9e00);animation-delay:.08s}
-.logo-color span:nth-child(3){background:linear-gradient(#65e5ff,#0780ef);animation-delay:.16s}
-.logo-color span:nth-child(4){background:linear-gradient(#bfff58,#43bf00);animation-delay:.24s}
-.logo-color span:nth-child(5){background:linear-gradient(#ff91ec,#ce24bf);animation-delay:.32s}
-.logo-pop{font-size:65px;line-height:.82;font-weight:1000;letter-spacing:-5px;color:#fff7ea;text-shadow:0 7px 0 #733083,0 12px 20px rgba(0,0,0,.36)}
-.logo-ribbon{display:inline-block;margin-top:5px;padding:5px 20px;border-radius:8px 8px 15px 15px;background:linear-gradient(180deg,#ee50df,#861bb4);border:2px solid rgba(255,255,255,.55);font-size:17px;font-weight:1000;letter-spacing:1.2px;box-shadow:0 5px 0 #4c0a70}
-.hero-tagline{position:relative;z-index:2;margin:10px auto 12px;max-width:360px;font-weight:800;line-height:1.25;color:#fff6c7;text-shadow:0 2px 7px rgba(0,0,0,.35)}
-.hero-orbit{position:absolute;inset:0;pointer-events:none;opacity:.88}
-.orb{position:absolute;width:34px;height:34px;border-radius:50%;box-shadow:inset 0 5px 7px rgba(255,255,255,.55),inset 0 -7px 9px rgba(0,0,0,.2),0 0 15px currentColor;animation:orbFloat 4s ease-in-out infinite}
-.orb::after{content:"";position:absolute;width:28%;height:18%;left:20%;top:15%;border-radius:50%;background:rgba(255,255,255,.8);transform:rotate(-25deg)}
-.orb-red{left:4%;top:18%;color:#ff526f;background:#ff3658}.orb-yellow{right:5%;top:15%;color:#ffbd3f;background:#ffac1d;animation-delay:-1s}.orb-blue{left:9%;bottom:12%;color:#39baff;background:#158df5;animation-delay:-2s}.orb-green{right:8%;bottom:10%;color:#7ee52a;background:#55ce0b;animation-delay:-3s}
-.progress-title{position:relative;z-index:2;display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:1000;color:#ffe76d;margin:2px 3px 6px}
-.progress{position:relative;z-index:2;height:14px;padding:2px;border:1px solid rgba(255,255,255,.35);background:rgba(4,2,33,.62);box-shadow:inset 0 3px 7px rgba(0,0,0,.45)}
-.progress>div{background:linear-gradient(90deg,#55d50d,#d9ff45);box-shadow:0 0 12px rgba(145,255,60,.75),inset 0 2px 0 rgba(255,255,255,.55);transition:width .7s cubic-bezier(.2,.9,.2,1)}
-.progress-copy{position:relative;z-index:2;margin-top:7px;font-size:12px;color:#ded8ff}
-.quick-play{
-  position:relative;z-index:3;width:min(82%,320px);margin:11px auto 2px;padding:13px 18px;border:2px solid #fff7a8;border-radius:22px;
-  color:#fff;font-size:22px;font-weight:1000;letter-spacing:.5px;background:linear-gradient(180deg,#9af331,#36b800);
-  box-shadow:0 7px 0 #1f7900,0 0 22px rgba(121,244,38,.42),inset 0 3px 0 rgba(255,255,255,.5);cursor:pointer;
-  animation:playPulse 2.2s ease-in-out infinite;
-}
-.quick-play:active{transform:translateY(4px);box-shadow:0 3px 0 #1f7900}.play-triangle{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:5px;border-radius:50%;background:#fff;color:#50be12;text-shadow:none}
-.legend{position:relative;z-index:2;margin-top:12px;color:#efe9ff;opacity:1}.legend span{padding:5px 8px;border-radius:999px;background:rgba(5,2,34,.4);border:1px solid rgba(255,255,255,.1)}
-.map-heading{text-align:center;margin:13px 0 10px;font-size:14px;font-weight:1000;letter-spacing:.9px;color:#ffe66b;text-shadow:0 2px 8px rgba(0,0,0,.4)}
-.level-grid{gap:10px;padding-bottom:26px}
-.level-btn{
-  --level-color:#49c4ff;overflow:hidden;border:2px solid rgba(255,255,255,.64);border-radius:21px;
-  color:#fff;background:linear-gradient(180deg,color-mix(in srgb,var(--level-color),white 24%),var(--level-color));
-  text-shadow:0 3px 0 rgba(0,0,0,.28);box-shadow:0 7px 0 color-mix(in srgb,var(--level-color),black 38%),0 10px 20px rgba(0,0,0,.26),inset 0 3px 0 rgba(255,255,255,.5);
-  transition:transform .14s ease,filter .14s ease;animation:levelPop .45s both;animation-delay:calc(var(--i,0) * 28ms)
-}
-.level-btn:nth-child(-n+4){--level-color:#64d00d}.level-btn:nth-child(n+5):nth-child(-n+8){--level-color:#078ae8}.level-btn:nth-child(n+9):nth-child(-n+12){--level-color:#8b35db}.level-btn:nth-child(n+13){--level-color:#d72c8f}
-.level-btn::before{content:"";position:absolute;inset:-30% auto -30% -50%;width:42%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);animation:buttonShine 4.8s ease-in-out infinite;animation-delay:calc(var(--i,0)*90ms)}
-.level-btn:active{transform:translateY(4px) scale(.96);filter:brightness(1.08)}
-.level-btn.current{outline:3px solid #fff286;animation:currentLevel 1.7s ease-in-out infinite}
-.level-btn.locked{--level-color:#603277;color:rgba(255,255,255,.72);filter:saturate(.68);box-shadow:0 7px 0 #351346,0 10px 20px rgba(0,0,0,.25),inset 0 3px 0 rgba(255,255,255,.18)}
-.level-btn .stars{bottom:8px;font-size:13px;text-shadow:0 2px 4px rgba(0,0,0,.4)}
-.game-app{padding-top:8px}
-.game-header{padding:7px 8px;border-radius:20px;border:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(58,20,130,.92),rgba(24,7,73,.94));box-shadow:0 8px 24px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.2)}
-.game-title{padding:6px 18px;border-radius:14px;background:rgba(8,3,43,.44);font-size:23px;text-shadow:0 2px 5px rgba(0,0,0,.38)}
-.badge{border:2px solid rgba(255,255,255,.55);background:linear-gradient(180deg,#ee4edb,#7622ba);font-size:21px;box-shadow:0 5px 0 #430d73}
-.stats{gap:7px}.stat{position:relative;overflow:hidden;padding:8px 6px;border:2px solid rgba(205,112,255,.62);background:linear-gradient(180deg,rgba(57,20,126,.94),rgba(19,6,65,.94));box-shadow:0 6px 0 rgba(10,2,36,.52),inset 0 1px 0 rgba(255,255,255,.18)}
-.stat::after{content:"";position:absolute;inset:-60% auto -60% -45%;width:35%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:statShine 5s ease-in-out infinite}
-.stat small{color:#ffe66d;opacity:1;font-weight:900}.stat strong{font-size:22px;text-shadow:0 2px 5px rgba(0,0,0,.35)}
-.goal{border:2px solid rgba(255,255,255,.9);background:linear-gradient(180deg,#fffdf8,#eee8ff);color:#321d69;box-shadow:0 6px 0 rgba(46,16,91,.45),0 0 16px rgba(255,255,255,.2)}
-#board{border:3px solid rgba(208,101,255,.82);background:linear-gradient(180deg,rgba(11,4,54,.88),rgba(5,2,32,.92));box-shadow:0 18px 44px rgba(0,0,0,.42),0 0 24px rgba(189,54,255,.26),inset 0 0 0 2px rgba(64,145,255,.14),inset 0 0 34px rgba(64,34,160,.33)}
-#board::before{content:"";position:absolute;inset:8px;border-radius:17px;pointer-events:none;background-image:linear-gradient(rgba(132,76,222,.14) 1px,transparent 1px),linear-gradient(90deg,rgba(132,76,222,.14) 1px,transparent 1px);background-size:calc(100% / 7) calc(100% / 8);opacity:.65}
-.ball{
-  border:1px solid rgba(255,255,255,.36);
-  box-shadow:inset 0 10px 13px rgba(255,255,255,.5),inset 0 -12px 16px rgba(0,0,0,.27),0 6px 9px rgba(0,0,0,.3),0 0 8px rgba(255,255,255,.12);
-  animation:premiumIdle 3.4s ease-in-out infinite;animation-delay:var(--delay,0s);will-change:transform,left,top,opacity
-}
-.ball::after{width:30%;height:20%;top:13%;left:18%;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.45));filter:blur(.2px)}
-.ball::before{transition:transform .2s ease}.ball.selected{outline:3px solid #fff;transform:scale(1.17);filter:brightness(1.2) saturate(1.12);box-shadow:inset 0 10px 13px rgba(255,255,255,.6),inset 0 -12px 16px rgba(0,0,0,.2),0 0 0 5px rgba(255,231,79,.25),0 0 22px #fff,0 0 38px rgba(85,194,255,.8);animation:selectedPulse .65s ease-in-out infinite alternate}
-.ball.popping{animation:premiumPop .2s ease-in forwards!important}
-.ball.special{animation:specialPulse 1.2s ease-in-out infinite}.ball.special::before{animation:specialSpin 2.4s ease-in-out infinite}
-#line polyline{stroke:url(#chainGradient);filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 11px #5ed8ff);stroke-dasharray:13 6;animation:dashFlow .55s linear infinite}
-.toast{border:3px solid #fff38b;background:linear-gradient(180deg,#ff4ce4,#7c20bc);color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.24);box-shadow:0 8px 0 #420b72,0 0 32px rgba(255,61,232,.58);transform:translate(-50%,-50%) scale(.6) rotate(-5deg)}
-.toast.show{animation:toastPunch .72s cubic-bezier(.2,.9,.2,1)}
-.bonusbar{gap:7px}.bonus-btn{min-height:47px;border:2px solid rgba(255,255,255,.5);border-radius:17px;background:linear-gradient(180deg,#7031ce,#2b0b7c);box-shadow:0 5px 0 #18044e,inset 0 2px 0 rgba(255,255,255,.25);transition:transform .14s ease,filter .14s ease}.bonus-btn:active{transform:translateY(3px);box-shadow:0 2px 0 #18044e}.bonus-btn.active{outline:3px solid #ffe76d;box-shadow:0 5px 0 #18044e,0 0 20px rgba(255,231,109,.65)}
-.bonus-count{background:linear-gradient(#ffef75,#ffa81c);color:#48205d;box-shadow:0 2px 0 rgba(0,0,0,.25)}
-.controls{gap:9px}.controls button{border:2px solid rgba(255,255,255,.55);padding:11px;box-shadow:0 5px 0 rgba(12,3,46,.65),inset 0 2px 0 rgba(255,255,255,.32);transition:transform .14s ease}.controls button:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(12,3,46,.65)}.controls .secondary{background:linear-gradient(180deg,#27bfff,#0871db)}.controls .primary{background:linear-gradient(180deg,#ff5d78,#d9194a);color:#fff}
-footer{color:#e3ddff;opacity:.92;font-weight:700}
-.overlay{background:radial-gradient(circle at center,rgba(112,31,190,.36),rgba(4,2,25,.92));backdrop-filter:blur(8px)}
-.result-card{position:relative;overflow:hidden;border:3px solid #d165ff;background:linear-gradient(180deg,#fffdf5,#efe8ff);box-shadow:0 25px 90px rgba(0,0,0,.55),0 0 42px rgba(211,80,255,.45);animation:resultPop .5s cubic-bezier(.2,.9,.25,1)}
-.result-card::before{content:"";position:absolute;inset:-50%;background:conic-gradient(transparent,rgba(255,216,76,.22),transparent 20%);animation:heroSpin 8s linear infinite}.result-card>*{position:relative;z-index:2}.result-burst{font-size:40px;animation:resultStar 1.4s ease-in-out infinite}.card button{background:linear-gradient(180deg,#9af331,#35b700);box-shadow:0 5px 0 #1f7900}.card button.alt{background:linear-gradient(180deg,#50caff,#0875e3);color:#fff;box-shadow:0 5px 0 #07519f}
-.pop-score{font-size:25px;color:#fff8a8;text-shadow:0 3px 0 #8a238f,0 0 16px #ff53eb;animation:scoreFloatPremium 1s cubic-bezier(.2,.8,.2,1) forwards}
-.spark{box-shadow:0 0 8px currentColor;animation:sparkBurstPremium .78s ease-out forwards}
+.tb-red{background:#ff526f}.tb-yellow{background:#ffbd3f}.tb-green{background:#39d5a5}.tb-blue{background:#4b8cff}.tb-purple{background:#a66cff}
+.tutorial-chain{position:relative;padding:18px 10px}
+.tutorial-chain-row{display:flex;gap:13px;align-items:center;justify-content:center}
+.tutorial-chain .tutorial-ball{position:relative;z-index:2}
+.tutorial-chain-line{position:absolute;left:45px;right:45px;top:38px;height:7px;border-radius:99px;background:#fff;box-shadow:0 0 14px #61dcff}
+.tutorial-finger{font-size:42px;margin-top:15px;animation:fingerMove 1.4s ease-in-out infinite}
+.tutorial-specials{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.special-card{padding:13px 8px;border-radius:17px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16)}
+.special-card b{display:block;font-size:31px;margin-bottom:4px}
+.tutorial-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%}
+.tool-card{padding:13px;border-radius:17px;background:rgba(255,255,255,.1);font-weight:900}
+.tool-card span{display:block;font-size:34px;margin-bottom:4px}
+.tutorial-stars{font-size:52px;letter-spacing:4px;filter:drop-shadow(0 0 10px #ffd84d)}
+@keyframes fingerMove{0%,100%{transform:translateX(-28px) rotate(-15deg)}50%{transform:translateX(28px) rotate(-5deg)}}
 
-@keyframes starDrift{to{background-position:56px 105px,116px 17px,4px 188px}}
-@keyframes skySweep{0%,18%{transform:translateX(-75%)}55%,100%{transform:translateX(85%)}}
-@keyframes screenIn{from{opacity:0;transform:scale(.985) translateY(10px)}to{opacity:1;transform:none}}
-@keyframes heroSpin{to{transform:rotate(360deg)}}
-@keyframes letterBounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-1deg)}}
-@keyframes orbFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-8px) scale(1.06)}}
-@keyframes playPulse{0%,100%{filter:brightness(1);transform:scale(1)}50%{filter:brightness(1.12);transform:scale(1.025)}}
-@keyframes levelPop{from{opacity:0;transform:translateY(12px) scale(.88)}to{opacity:1;transform:none}}
-@keyframes buttonShine{0%,72%{left:-50%}100%{left:130%}}
-@keyframes currentLevel{0%,100%{box-shadow:0 7px 0 color-mix(in srgb,var(--level-color),black 38%),0 0 0 0 rgba(255,239,90,.65)}50%{box-shadow:0 7px 0 color-mix(in srgb,var(--level-color),black 38%),0 0 0 8px rgba(255,239,90,0)}}
-@keyframes statShine{0%,70%{left:-45%}100%{left:135%}}
-@keyframes premiumIdle{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.015)}}
-@keyframes selectedPulse{from{transform:scale(1.12)}to{transform:scale(1.2)}}
-@keyframes premiumPop{0%{transform:scale(1);opacity:1}35%{transform:scale(1.28);filter:brightness(1.6)}100%{transform:scale(.08) rotate(110deg);opacity:0}}
-@keyframes specialPulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3) drop-shadow(0 0 9px #fff)}}
-@keyframes specialSpin{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.12)}}
-@keyframes dashFlow{to{stroke-dashoffset:-19}}
-@keyframes toastPunch{0%{opacity:0;transform:translate(-50%,-50%) scale(.45) rotate(-8deg)}22%{opacity:1;transform:translate(-50%,-50%) scale(1.18) rotate(3deg)}45%{transform:translate(-50%,-50%) scale(.96) rotate(-1deg)}75%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}100%{opacity:0;transform:translate(-50%,-75%) scale(.96)}}
-@keyframes resultPop{from{opacity:0;transform:scale(.7) rotate(-4deg)}to{opacity:1;transform:none}}
-@keyframes resultStar{0%,100%{transform:scale(1) rotate(-8deg)}50%{transform:scale(1.25) rotate(8deg)}}
-@keyframes scoreFloatPremium{0%{opacity:0;transform:translate(-50%,-35%) scale(.45)}18%{opacity:1;transform:translate(-50%,-55%) scale(1.25)}100%{opacity:0;transform:translate(-50%,-155%) scale(1)}}
-@keyframes sparkBurstPremium{0%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.15) rotate(240deg)}}
-@keyframes confettiFall{0%{opacity:1;transform:translate3d(0,-10px,0) rotate(0)}100%{opacity:0;transform:translate3d(calc((var(--drift, .5) - .5)*120px),105vh,0) rotate(720deg)}}
-
-@media (max-height:760px){
-  .premium-hero{padding:10px 12px}.logo-color span{width:35px;height:39px;font-size:24px}.logo-pop{font-size:52px}.logo-ribbon{font-size:14px;padding:4px 15px}.hero-tagline{margin:7px auto 8px;font-size:13px}.quick-play{padding:9px 14px;font-size:18px}.play-triangle{width:28px;height:28px}.legend{display:none}.map-heading{margin:9px 0 7px}
-}
-@media (max-width:360px){.logo-mini{font-size:17px}.mini-status{min-width:54px;padding:6px 8px}.logo-color span{width:37px;height:42px;font-size:25px}.level-grid{gap:8px}.level-btn{border-radius:17px}}
 </style>
 </head>
 <body>
 
 <section id="mapScreen" class="screen active">
   <div class="app">
-    <div class="topbar premium-topbar">
-      <div class="mini-status"><span class="status-star">⭐</span><strong id="totalStarsBadge">0</strong></div>
-      <div class="title logo-mini" aria-label="Color Pop Adventure"><span>C</span><span>O</span><span>L</span><span>O</span><span>R</span><b>POP</b></div>
-      <button id="soundBtn" class="icon-btn sound-orb" aria-label="Attiva o disattiva il suono">🔊</button>
+    <div class="topbar">
+      <div class="title">Color Pop Adventure</div>
+      <button id="soundBtn" class="icon-btn">🔊</button>
     </div>
-    <div class="panel hero premium-hero">
-      <div class="hero-orbit" aria-hidden="true">
-        <i class="orb orb-red"></i><i class="orb orb-yellow"></i><i class="orb orb-blue"></i><i class="orb orb-green"></i>
-      </div>
-      <div class="logo-lockup" aria-label="Color Pop Adventure">
-        <div class="logo-color"><span>C</span><span>O</span><span>L</span><span>O</span><span>R</span></div>
-        <div class="logo-pop">POP</div>
-        <div class="logo-ribbon">ADVENTURE</div>
-      </div>
-      <p class="hero-tagline">Collega i colori, crea combo spettacolari e svuota il tabellone!</p>
-      <div class="progress-title"><span>PROGRESSI AVVENTURA</span><span id="progressCounter">0 / 20</span></div>
+    <div class="panel hero">
+      <h1>🎈</h1>
+      <p>Elimina i gruppi dello stesso colore e svuota completamente il tabellone.</p>
       <div class="progress"><div id="progressBar"></div></div>
-      <div id="progressText" class="progress-copy"></div>
-      <button id="quickPlayBtn" class="quick-play"><span class="play-triangle">▶</span> GIOCA</button>
-      <div class="legend"><span>💣 Combo 6</span><span>🚀 Combo 8</span><span>🌈 Combo 10</span><span>🧹 Svuota tutto</span></div>
+      <div id="progressText" style="margin-top:8px;font-size:13px;opacity:.78"></div>
+      <div class="legend"><span>💣 6</span><span>🚀 8</span><span>🌈 10</span><span>🧹 Svuota tutto</span></div>
+      <button id="tutorialOpenBtn" class="help-btn">🧹 Come si gioca</button>
     </div>
-    <div class="map-heading"><span>✨</span> SCEGLI IL LIVELLO <span>✨</span></div>
     <div id="levelGrid" class="level-grid"></div>
   </div>
 </section>
@@ -437,9 +321,26 @@ footer{color:#e3ddff;opacity:.92;font-weight:700}
   </div>
 </section>
 
+
+<div id="tutorialOverlay" class="tutorial-overlay" aria-hidden="true">
+  <div class="tutorial-card">
+    <div class="tutorial-top">
+      <h2>Come si gioca</h2>
+      <button id="tutorialClose" class="tutorial-close" aria-label="Chiudi">×</button>
+    </div>
+    <div id="tutorialVisual" class="tutorial-visual"></div>
+    <h3 id="tutorialTitle" class="tutorial-title"></h3>
+    <p id="tutorialText" class="tutorial-text"></p>
+    <div id="tutorialDots" class="tutorial-dots"></div>
+    <div class="tutorial-actions">
+      <button id="tutorialPrev">← Indietro</button>
+      <button id="tutorialNext">Avanti →</button>
+    </div>
+  </div>
+</div>
+
 <div id="resultOverlay" class="overlay">
-  <div class="card result-card">
-    <div class="result-burst" aria-hidden="true">✨</div>
+  <div class="card">
     <h2 id="resultTitle">Livello completato!</h2>
     <div id="resultStars" class="result-stars">⭐⭐⭐</div>
     <p id="resultText"></p>
@@ -535,8 +436,7 @@ function renderMap(){
   const gridEl=document.getElementById('levelGrid');gridEl.innerHTML='';
   LEVELS.forEach((lvl,i)=>{
     const b=document.createElement('button'), unlocked=i<progress.unlocked;
-    b.className='level-btn'+(unlocked?'':' locked')+(unlocked&&i===Math.min(progress.unlocked-1,LEVELS.length-1)?' current':'');
-    b.style.setProperty('--i',i);
+    b.className='level-btn'+(unlocked?'':' locked');
     const stars=progress.stars[i]||0;
     b.innerHTML=unlocked?`${i+1}<div class="stars">${'⭐'.repeat(stars)}${'☆'.repeat(3-stars)}</div>`:`<span class="lock">🔒</span>`;
     if(unlocked)b.onclick=()=>startLevel(i);
@@ -545,9 +445,6 @@ function renderMap(){
   const completed=Object.keys(progress.stars).length;
   document.getElementById('progressBar').style.width=(completed/LEVELS.length*100)+'%';
   document.getElementById('progressText').textContent=`${completed} livelli completati su ${LEVELS.length}`;
-  const totalStars=Object.values(progress.stars).reduce((sum,value)=>sum+(Number(value)||0),0);
-  document.getElementById('totalStarsBadge').textContent=totalStars;
-  document.getElementById('progressCounter').textContent=`${completed} / ${LEVELS.length}`;
   document.getElementById('soundBtn').textContent=soundOn?'🔊':'🔇';
 }
 function showScreen(name){
@@ -603,8 +500,7 @@ function renderBoard(){
     const p=pos(r,c),el=document.createElement('div');
     el.className='ball'+(cell.special?' special '+cell.special:'');
     el.dataset.r=r;el.dataset.c=c;
-    Object.assign(el.style,{width:p.size+'px',height:p.size+'px',left:p.left+'px',top:p.top+'px',background:`radial-gradient(circle at 32% 25%,rgba(255,255,255,.32),transparent 24%),${COLORS[cell.color]}`,boxShadow:`inset 0 10px 13px rgba(255,255,255,.5),inset 0 -12px 16px rgba(0,0,0,.27),0 6px 9px rgba(0,0,0,.3),0 0 11px ${COLORS[cell.color]}55`});
-    el.style.setProperty('--delay',`${-((r*COLS+c)%11)*0.17}s`);
+    Object.assign(el.style,{width:p.size+'px',height:p.size+'px',left:p.left+'px',top:p.top+'px',background:COLORS[cell.color]});
     board.appendChild(el);
     if(cell.ice){
       const ice=document.createElement('div');ice.className='ice';
@@ -647,7 +543,7 @@ function updateSelected(){
 function drawLine(){
   const pts=selected.map(({r,c})=>{const p=pos(r,c);return`${p.x},${p.y}`}).join(' ');
   svg.setAttribute('viewBox',`0 0 ${board.clientWidth} ${board.clientHeight}`);
-  svg.innerHTML=pts?`<defs><linearGradient id="chainGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".48" stop-color="#72e9ff"/><stop offset="1" stop-color="#ffe65f"/></linearGradient></defs><polyline points="${pts}" fill="none" stroke="url(#chainGradient)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>`:'';
+  svg.innerHTML=pts?`<polyline points="${pts}" fill="none" stroke="rgba(255,255,255,.94)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>`:'';
 }
 async function finishSelection(){
   if(!dragging)return;
@@ -829,6 +725,8 @@ function collapse(){
   grid=compact;
 }
 
+
+
 function spawnScorePopup(x,y,text){
   const el=document.createElement('div');
   el.className='pop-score';
@@ -840,18 +738,14 @@ function spawnScorePopup(x,y,text){
 }
 
 function spawnBurst(x,y,color){
-  for(let i=0;i<18;i++){
+  for(let i=0;i<10;i++){
     const s=document.createElement('div');
     s.className='spark';
     s.style.left=x+'px';
     s.style.top=y+'px';
-    s.style.background=i%4===0?'#ffffff':color;
-    s.style.borderRadius=i%3===0?'2px':'50%';
-    s.style.transform=`rotate(${Math.random()*180}deg)`;
-    const angle=Math.random()*Math.PI*2;
-    const distance=35+Math.random()*70;
-    s.style.setProperty('--dx',`${Math.cos(angle)*distance}px`);
-    s.style.setProperty('--dy',`${Math.sin(angle)*distance}px`);
+    s.style.background=color;
+    s.style.setProperty('--dx',`${(Math.random()*90-45).toFixed(0)}px`);
+    s.style.setProperty('--dy',`${(Math.random()*90-45).toFixed(0)}px`);
     board.appendChild(s);
     setTimeout(()=>s.remove(),700);
   }
@@ -1016,16 +910,6 @@ async function resolveNoMoves(){
   }
 }
 
-function spawnCelebration(){
-  const colors=['#ff526f','#ffbd3f','#39d5a5','#4b8cff','#a66cff','#ffffff'];
-  for(let i=0;i<48;i++){
-    const confetti=document.createElement('i');
-    confetti.style.cssText=`position:fixed;z-index:130;left:${Math.random()*100}vw;top:-18px;width:${5+Math.random()*7}px;height:${8+Math.random()*12}px;background:${colors[i%colors.length]};border-radius:${i%3===0?'50%':'2px'};pointer-events:none;box-shadow:0 0 7px ${colors[i%colors.length]};animation:confettiFall ${1.6+Math.random()*1.5}s cubic-bezier(.15,.7,.25,1) forwards;animation-delay:${Math.random()*.35}s`;
-    document.body.appendChild(confetti);
-    setTimeout(()=>confetti.remove(),3400);
-  }
-}
-
 function objectiveMet(){
   return countBalls()===0;
 }
@@ -1076,7 +960,7 @@ function endLevel(win){
     progress.stars[currentLevel]=Math.max(progress.stars[currentLevel]||0,stars);
     progress.best[currentLevel]=Math.max(progress.best[currentLevel]||0,score);
     progress.unlocked=Math.max(progress.unlocked,Math.min(LEVELS.length,currentLevel+2));
-    save();spawnCelebration();beep(880,.18,'triangle',.07);setTimeout(()=>beep(1100,.2,'triangle',.06),130);
+    save();beep(880,.18,'triangle',.07);setTimeout(()=>beep(1100,.2,'triangle',.06),130);
   }else{
     title.textContent='Mosse finite';
     starsEl.textContent='☆☆☆';
@@ -1163,9 +1047,81 @@ window.addEventListener('pointercancel',()=>{
   }
 });
 window.addEventListener('resize',()=>{if(gameScreen.classList.contains('active'))renderBoard()});
-document.getElementById('quickPlayBtn').onclick=()=>startLevel(Math.max(0,Math.min(progress.unlocked-1,LEVELS.length-1)));
+
+const tutorialPages=[
+  {
+    title:'Svuota il tabellone',
+    text:'Elimina tutte le palline prima di terminare le mosse disponibili.',
+    visual:`<div class="tutorial-mini-board">
+      <i class="tutorial-ball tb-red"></i><i class="tutorial-ball tb-yellow"></i><i class="tutorial-ball tb-blue"></i><i class="tutorial-ball tb-green"></i>
+      <i class="tutorial-ball tb-purple"></i><i class="tutorial-ball tb-red"></i><i class="tutorial-ball tb-yellow"></i><i class="tutorial-ball tb-blue"></i>
+      <i class="tutorial-ball tb-green"></i><i class="tutorial-ball tb-purple"></i><i class="tutorial-ball tb-red"></i><i class="tutorial-ball tb-yellow"></i>
+    </div><div style="font-size:42px;margin-top:14px">🧹✨</div>`
+  },
+  {
+    title:'Trascina e collega',
+    text:'Tieni premuto e trascina sulle palline dello stesso colore. Puoi collegarle anche in diagonale.',
+    visual:`<div class="tutorial-chain"><div class="tutorial-chain-line"></div><div class="tutorial-chain-row">
+      <i class="tutorial-ball tb-blue"></i><i class="tutorial-ball tb-blue"></i><i class="tutorial-ball tb-blue"></i><i class="tutorial-ball tb-blue"></i>
+    </div><div class="tutorial-finger">☝️</div></div>`
+  },
+  {
+    title:'Crea combo speciali',
+    text:'Catene più lunghe generano poteri molto più forti.',
+    visual:`<div class="tutorial-specials">
+      <div class="special-card"><b>💣</b>6 palline<br>Bomba</div>
+      <div class="special-card"><b>🚀</b>8 palline<br>Razzo</div>
+      <div class="special-card"><b>🌈</b>10 palline<br>Arcobaleno</div>
+    </div>`
+  },
+  {
+    title:'Usa i bonus',
+    text:'Martello, bomba, mosse extra e mescola possono salvarti nei livelli più difficili.',
+    visual:`<div class="tutorial-tools">
+      <div class="tool-card"><span>🔨</span>Martello</div>
+      <div class="tool-card"><span>💣</span>Bomba</div>
+      <div class="tool-card"><span>➕</span>3 mosse</div>
+      <div class="tool-card"><span>🔀</span>Mescola</div>
+    </div>`
+  },
+  {
+    title:'Conquista 3 stelle',
+    text:'Completa il livello usando meno mosse possibile per ottenere il punteggio massimo.',
+    visual:`<div><div class="tutorial-stars">⭐⭐⭐</div><div style="font-size:42px;margin-top:18px">🏆</div></div>`
+  }
+];
+let tutorialIndex=0;
+function renderTutorial(){
+  const page=tutorialPages[tutorialIndex];
+  document.getElementById('tutorialVisual').innerHTML=page.visual;
+  document.getElementById('tutorialTitle').textContent=page.title;
+  document.getElementById('tutorialText').textContent=page.text;
+  document.getElementById('tutorialDots').innerHTML=tutorialPages.map((_,i)=>`<i class="tutorial-dot ${i===tutorialIndex?'active':''}"></i>`).join('');
+  document.getElementById('tutorialPrev').disabled=tutorialIndex===0;
+  document.getElementById('tutorialPrev').style.opacity=tutorialIndex===0?'.4':'1';
+  document.getElementById('tutorialNext').textContent=tutorialIndex===tutorialPages.length-1?'Ho capito ✓':'Avanti →';
+}
+function openTutorial(){
+  tutorialIndex=0;renderTutorial();
+  const overlay=document.getElementById('tutorialOverlay');
+  overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');
+}
+function closeTutorial(){
+  const overlay=document.getElementById('tutorialOverlay');
+  overlay.classList.remove('show');overlay.setAttribute('aria-hidden','true');
+  localStorage.setItem('cp-tutorial-seen','true');
+}
+document.getElementById('tutorialOpenBtn').onclick=openTutorial;
+document.getElementById('tutorialClose').onclick=closeTutorial;
+document.getElementById('tutorialPrev').onclick=()=>{if(tutorialIndex>0){tutorialIndex--;renderTutorial()}};
+document.getElementById('tutorialNext').onclick=()=>{
+  if(tutorialIndex<tutorialPages.length-1){tutorialIndex++;renderTutorial()}
+  else closeTutorial();
+};
+document.getElementById('tutorialOverlay').addEventListener('click',e=>{if(e.target.id==='tutorialOverlay')closeTutorial()});
 
 renderMap();
+if(!localStorage.getItem('cp-tutorial-seen'))setTimeout(openTutorial,450);
 </script>
 </body>
 </html>
