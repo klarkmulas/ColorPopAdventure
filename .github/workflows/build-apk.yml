@@ -9,6 +9,7 @@ on:
 permissions:
   contents: read
 
+# Public-repository build trigger refreshed on 2026-08-06.
 jobs:
   build:
     runs-on: ubuntu-latest
