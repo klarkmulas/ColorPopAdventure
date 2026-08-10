@@ -35,14 +35,16 @@ public class MainActivity extends Activity {
         "g.gain.setValueAtTime(Math.max(vol,0.0001),ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+dur);" +
         "o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+dur);o.onended=function(){try{o.disconnect();g.disconnect();}catch(e){}};}catch(e){}" +
         "};" +
+        "if(typeof COLORS!=='undefined'&&COLORS.length<6)COLORS.push('#ff63cf');" +
+        "if(typeof COLOR_NAMES!=='undefined'&&COLOR_NAMES.length<6)COLOR_NAMES.push('rosa');" +
 
         "function seeded(seed){let s=seed>>>0;return function(){s=(s*1664525+1013904223)>>>0;return s/4294967296;};}" +
         "function levelConfig(index){" +
-        "if(index<=2)return{colors:3,minRuns:2,maxRuns:2,margin:6-index,label:'Facile'};" +
-        "if(index<=6)return{colors:4,minRuns:2,maxRuns:3,margin:Math.max(2,8-index),label:'Normale'};" +
-        "if(index<=11)return{colors:4,minRuns:3,maxRuns:3,margin:Math.max(0,11-index),label:'Impegnativo'};" +
-        "if(index<=15)return{colors:5,minRuns:3,maxRuns:4,margin:Math.max(0,15-index),label:'Difficile'};" +
-        "return{colors:5,minRuns:4,maxRuns:4,margin:Math.max(0,19-index),label:'Esperto'};" +
+        "if(index<=2)return{colors:4,minRuns:3,maxRuns:3,margin:3-index,label:'Normale'};" +
+        "if(index<=6)return{colors:5,minRuns:3,maxRuns:4,margin:Math.max(0,5-index),label:'Impegnativo'};" +
+        "if(index<=11)return{colors:5,minRuns:4,maxRuns:4,margin:0,label:'Difficile'};" +
+        "if(index<=15)return{colors:6,minRuns:4,maxRuns:4,margin:0,label:'Molto difficile'};" +
+        "return{colors:6,minRuns:4,maxRuns:4,margin:0,label:'Estremo'};" +
         "}" +
         "function partitionFor(runs,rnd){" +
         "const p2=[[4,4],[3,5],[5,3],[2,6],[6,2]];" +
@@ -78,20 +80,20 @@ public class MainActivity extends Activity {
         "};" +
         "window.startLevel=function(index){" +
         "currentLevel=index;score=0;collected=0;selected=[];dragging=false;lock=false;toolMode=null;" +
-        "hammerCount=1;bombCount=1;movesBonusCount=1;levelLabel.textContent=index+1;showScreen('game');" +
+        "hammerCount=index<=5?1:0;bombCount=index<=11?1:0;movesBonusCount=index<=2?1:0;levelLabel.textContent=index+1;showScreen('game');" +
         "requestAnimationFrame(function(){buildGrid();updateUI();requestAnimationFrame(function(){renderBoard();updateUI();});});" +
         "};" +
         "window.calculateStars=function(){" +
         "const plan=window.__levelPlan;if(!plan)return 1;const used=plan.startMoves-moves;" +
-        "if(used<=plan.optimal)return 3;if(used<=plan.optimal+2)return 2;return 1;" +
+        "if(used<=plan.optimal)return 3;if(used<=plan.optimal+1)return 2;return 1;" +
         "};" +
         "const originalUpdateUI=window.updateUI;" +
         "if(typeof originalUpdateUI==='function'){window.updateUI=function(){" +
-        "originalUpdateUI();const plan=window.__levelPlan;if(plan&&goalEl){goalEl.textContent='Svuota tutto: '+countBalls()+' palline • '+plan.label+' • soluzione garantita';}" +
+        "originalUpdateUI();const plan=window.__levelPlan;if(plan&&goalEl){goalEl.textContent='Svuota tutto: '+countBalls()+' palline • '+plan.label+' • '+plan.colors+' colori';}" +
         "};}" +
         "window.resolveNoMoves=async function(){" +
         "if(countBalls()===0)return;showToast('NESSUNA COMBO');beep(260,.12,'triangle',.04);" +
-        "if(goalEl)goalEl.textContent='Nessuna combinazione: usa Mescola, Martello o Bomba';" +
+        "if(goalEl)goalEl.textContent='Nessuna combinazione: devi gestire meglio le mosse o usare Mescola';" +
         "};" +
         "const oldRender=window.renderBoard;" +
         "if(typeof oldRender==='function'){window.renderBoard=function(){" +
